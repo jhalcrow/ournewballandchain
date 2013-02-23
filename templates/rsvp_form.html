@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}RSVP{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    <label>Name:
+    <input type="text" name="NAME"></input>
+</label>
+
+    <label>Email address:
+    <input type="text" name="EMAIL"></input>
+</label>
+
+    <label>I will be attending:
+    <input type="checkbox" name="ATTENDING"></input>
+    </label>
+    
+    <label>Number of Guests:
+    <input type="text" name="GUESTS"></input>
+</label>
+    <label>Anything that you'd like to add:
+    <input type="textfield" name="NOTES"></input>
+    </label>
+    <input type="submit"></input>
+</form>
+{% endblock %}

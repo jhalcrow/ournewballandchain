@@ -1,0 +1,40 @@
+body {
+    /*background-color: #ffe196;*/
+    background-image: url('../paper.png');
+    font-family: 'Goudy Bookletter 1911';
+}
+
+.cell {
+    background-color: white;
+    height: 140px;
+    width: 140px;
+    border: 10px solid black;
+    display: inline-block;
+    text-align: center;
+    margin: 1em;
+}
+
+#header {
+    text-align: center;
+}
+#left {
+    background-image: url('../dada.jpeg');
+}
+
+#right {
+    background-image: url('../dada.jpeg');
+}
+
+#center {
+}
+/*
+#footer {
+    clear: both;
+}
+
+form label {
+    display: inline-block;
+    text-align: left
+    margin-left: 10em;
+}
+*/
