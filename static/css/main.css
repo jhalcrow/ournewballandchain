@@ -1,6 +1,6 @@
 body {
     /*background-color: #ffe196;*/
-    background-image: url('../paper.png');
+    background-image: url('../img/paper.png');
     font-family: 'Goudy Bookletter 1911';
 }
 
@@ -18,11 +18,11 @@ body {
     text-align: center;
 }
 #left {
-    background-image: url('../dada.jpeg');
+    background-image: url('../img/data.jpeg');
 }
 
 #right {
-    background-image: url('../dada.jpeg');
+    background-image: url('../img/data.jpeg');
 }
 
 #center {
