@@ -4,6 +4,7 @@ body {
     font-family: 'Goudy Bookletter 1911';
 }
 
+
 .cell {
     background-color: white;
     height: 140px;
@@ -16,6 +17,10 @@ body {
 
 #header {
     text-align: center;
+}
+
+h1 {
+    font-family: 'Goudy Bookletter 1911';
 }
 #left {
     background-image: url('../img/data.jpeg');
