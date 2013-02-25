@@ -4,27 +4,43 @@
 {% block head %}
 {{ super() }}
 {% endblock %}
-
+f
 {% block content %}
+{% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <form method="POST">
-    <label>Name:
-    <input type="text" name="NAME"></input>
-</label>
-
-    <label>Email address:
-    <input type="text" name="EMAIL"></input>
-</label>
-
-    <label>I will be attending:
-    <input type="checkbox" name="ATTENDING"></input>
-    </label>
-    
-    <label>Number of Guests:
-    <input type="text" name="GUESTS"></input>
-</label>
-    <label>Anything that you'd like to add:
-    <input type="textfield" name="NOTES"></input>
-    </label>
-    <input type="submit"></input>
+    {{ form.csrf_token}}
+    {{ form.name.label }} {{ form.name }}
+    {{ form.email.label }} {{ form.email }}
+    {{ form.rsvp_code.label }} {{ form.rsvp_code }}
+    {{ form.attending.label }} {{ form.attending }}
+    <div id="guests-field" style="visibility: hidden">
+    {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
+    </div>
+    {{ form.notes.label }} {{ form.notes }}
+    <p><input type="submit">
 </form>
+
+
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $('#attending').change(function() {
+
+        if(this.checked) {
+            $('#guests-field').css('visibility', 'visible')
+        } else {
+            $('#guests-field').css('visibility', 'hidden')
+        }
+    });
+</script>
 {% endblock %}
