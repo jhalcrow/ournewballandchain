@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}RSVP{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="POST">
+    {{ form.csrf_token}}
+    {{ form.name.label }} {{ form.name }}
+    {{ form.email.label }} {{ form.email }}
+    {{ form.attending.label }} {{ form.attending }}
+    <div id="guests-field" style="visibility: hidden">
+    {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
+    </div>
+    {{ form.notes.label }} {{ form.notes }}
+    <p><input type="submit">
+</form>
+
+
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $('#attending').change(function() {
+
+        if(this.checked) {
+            $('#guests-field').css('visibility', 'visible')
+        } else {
+            $('#guests-field').css('visibility', 'hidden')
+        }
+    });
+</script>
+{% endblock %}
