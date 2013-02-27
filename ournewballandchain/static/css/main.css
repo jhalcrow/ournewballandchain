@@ -1,45 +1,82 @@
-body {
-    /*background-color: #ffe196;*/
-    background-image: url('../img/paper.png');
-    font-family: 'Goudy Bookletter 1911';
+
+@font-face {
+    font-family:"Bellerose Light:1.0";src:url("Bellerose.eot?") format("eot"),url("Bellerose.woff") format("woff"),url("Bellerose.ttf") format("truetype"),url("Bellerose.svg#BelleroseLight") format("svg");
+    font-weight:normal;
+    font-style:normal;
 }
 
+body {
+    background-image: url('../img/paper.png');
+    background-size: 900px;
+    font-family: 'Bellerose Light:1.0';
+    text-align:center;
+}
+
+.container {
+    text-align:center;
+    margin-top: -190px;
+    margin-left: 150px;
+}
 
 .cell {
-    background-color: white;
+  /*  background-color: white;
     height: 140px;
     width: 140px;
-    border: 10px solid black;
+    border: 10px solid black;*/
     display: inline-block;
     text-align: center;
     margin: 1em;
 }
 
+.stamp-label {
+    font-size: 14pt;
+    margin-top: 0.2em;
+    font-family: 'Bellerose Light:1.0';
+}
+
 #header {
+    align-content:center;
+    background-image: url('../img/blank_banner.png');
+    width:1200px;
+    height:657px;
     text-align: center;
+
 }
 
+#sub-header {
+    padding-top: 400px;
+    padding-left: 40px;
+    width:1200px;
+    height:657px;
+    text-shadow: 0px 2px 3px #fff;
+}
+
+.text {
+    font-family: 'Arial';
+    font-size:12pt;
+    text-align: left;
+    margin-top: -50px;
+    margin-left: 120px;
+    padding:1em;
+    width: 700px;
+    background-color: rgba(60,142,196,0.1);
+    border: solid;
+    border-radius: 10px;
+    
+}
+
+.name {
+    font-weight: bold;
+}
+
+ul.people {
+    list-style: none;
+    margin-top: 1em;
+}
+
+ul.people li {
+    margin-bottom: 0.5em;
+}
 h1 {
-    font-family: 'Goudy Bookletter 1911';
+    font-size:32pt;
 }
-#left {
-    background-image: url('../img/data.jpeg');
-}
-
-#right {
-    background-image: url('../img/data.jpeg');
-}
-
-#center {
-}
-/*
-#footer {
-    clear: both;
-}
-
-form label {
-    display: inline-block;
-    text-align: left
-    margin-left: 10em;
-}
-*/
