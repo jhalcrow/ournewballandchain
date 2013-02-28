@@ -51,18 +51,28 @@ body {
     text-shadow: 0px 2px 3px #fff;
 }
 
+
 .text {
-    font-family: 'Arial';
+    font-family: serif;
     font-size:12pt;
     text-align: left;
     margin-top: -50px;
     margin-left: 120px;
-    padding:1em;
-    width: 700px;
-    background-color: rgba(255,255,255,0.5);
-    border: solid;
-    border-radius: 10px;
-    
+    margin-bottom: 20px;
+    padding:50px;
+    width: 600px;
+    background-color: #fff;
+    border-image: url(../img/border_whitefill.png);
+    border-image-width: 20;
+    border-image-slice: 45;
+    border-image-repeat: stretch;
+    background-clip:content-box;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Quintessential);
+
+.text h3 {
+    font-family: 'Quintessential';
 }
 
 .name {
