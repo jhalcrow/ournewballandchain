@@ -53,8 +53,8 @@ body {
 
 
 .text {
-    font-family: serif;
-    font-size:12pt;
+    font-family: Helvetica;
+    font-size:10pt;
     text-align: left;
     margin-top: -50px;
     margin-left: 120px;
@@ -69,10 +69,8 @@ body {
     background-clip:content-box;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Quintessential);
-
 .text h3 {
-    font-family: 'Quintessential';
+    font-family: 'Bellerose Light:1.0';
 }
 
 .name {
