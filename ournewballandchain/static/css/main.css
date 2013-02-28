@@ -14,7 +14,7 @@ body {
 
 .container {
     text-align:center;
-    margin-top: -190px;
+    margin-top: -290px;
     margin-left: 150px;
 }
 
@@ -40,6 +40,7 @@ body {
     width:1200px;
     height:657px;
     text-align: center;
+    background-repeat: no-repeat;
 
 }
 
