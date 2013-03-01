@@ -1,12 +1,19 @@
-from fabric.api import task, put, env
+from fabric.api import task, put, env, sudo, run
+from fabric.context_managers import cd
 
 env.hosts = ['ournewballandchain.com']
 env.user = 'ubuntu'
 env.keyfile_name = '~/.ec2/weddingkey.pem'
+env.forward_agent = True
+
+repo_url = "git@github.com:jhalcrow/ournewballandchain.git"
 
 def setup():
-    sudo("apt-get -y install apache2-mpm-worker mosh")
+    sudo("apt-get -y install apache2-mpm-worker mosh git")
+    run("git clone %s" % repo_url)
 
-def update():
-    put('static/*', '/var/www/', use_sudo=True)
+def deploy():
+    with cd("ournewballandchain"):
+        run("git pull")
+        sudo("cp -r ournewballandchain/static/* /var/www")
 
