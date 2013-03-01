@@ -3,7 +3,7 @@ from fabric.context_managers import cd
 
 env.hosts = ['ournewballandchain.com']
 env.user = 'ubuntu'
-env.keyfile_name = '~/.ec2/weddingkey.pem'
+env.key_filename = '~/.ec2/weddingkey.pem'
 env.forward_agent = True
 
 repo_url = "git@github.com:jhalcrow/ournewballandchain.git"
