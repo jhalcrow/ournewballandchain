@@ -1,14 +1,10 @@
-
-@font-face {
-    font-family:"Bellerose Light:1.0";src:url("Bellerose.eot?") format("eot"),url("Bellerose.woff") format("woff"),url("Bellerose.ttf") format("truetype"),url("Bellerose.svg#BelleroseLight") format("svg");
-    font-weight:normal;
-    font-style:normal;
-}
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:400,600);
 
 body {
     background-image: url('../img/paper.png');
     background-size: 900px;
-    font-family: 'Bellerose Light:1.0';
+    font-family: 'Josefin Sans';
+    font-weight: 400;
     text-align:center;
 }
 
@@ -27,7 +23,6 @@ body {
 .stamp-label {
     font-size: 14pt;
     margin-top: 0.2em;
-    font-family: 'Bellerose Light:1.0';
 }
 
 #header {
@@ -64,7 +59,7 @@ body {
 }
 
 .text h3 {
-    font-family: 'Bellerose Light:1.0';
+    font-family: 'Josefin Sans';
 }
 
 .name {
@@ -96,4 +91,8 @@ ul.people li:nth-child(even) .personpic img { float: right; }
 }
 h1 {
     font-size:32pt;
+    font-weight: 600;
+}
+h3 {
+    font-weight: 600;
 }
