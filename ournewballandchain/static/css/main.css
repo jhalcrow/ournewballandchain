@@ -59,6 +59,11 @@ body {
 
 .text h3 {
     font-family: 'Josefin Sans';
+    text-decoration:underline;
+}
+
+.text h4 {
+    text-decoration: underline;
 }
 
 .name {
@@ -94,4 +99,15 @@ h1 {
 }
 h3 {
     font-weight: 600;
+}
+
+
+pre {
+    font-family: "Helvetica";
+    padding: 0;
+    padding-bottom: -1em;
+    margin-left: 5em;
+    width: 20em;
+    border-left: solid black;
+    background-color: rgba(100,100,100,0.1);
 }
