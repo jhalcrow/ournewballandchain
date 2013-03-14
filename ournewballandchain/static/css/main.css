@@ -48,14 +48,13 @@ body {
     margin-top: -50px;
     margin-left: 120px;
     margin-bottom: 20px;
-    padding:50px;
+    padding:20px;
     width: 600px;
-    background-color: #fff;
-    border-image: url(../img/border_whitefill.png);
-    border-image-width: 20;
-    border-image-slice: 45;
+    border: 20px solid transparent;
+    border-image-source: url(../img/border_whitefill.png);
+    border-image-width: 2;
+    border-image-slice: 45 fill;
     border-image-repeat: stretch;
-    background-clip:content-box;
 }
 
 .text h3 {
