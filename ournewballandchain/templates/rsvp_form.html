@@ -4,8 +4,19 @@
 {% block head %}
 {{ super() }}
 {% endblock %}
-f
+
 {% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
 {% if form.errors %}
     <ul class="errors">
         {% for field_name, field_errors in form.errors|dictsort if field_errors %}
@@ -20,12 +31,11 @@ f
     {{ form.csrf_token}}
     {{ form.name.label }} {{ form.name }}
     {{ form.email.label }} {{ form.email }}
-    {{ form.rsvp_code.label }} {{ form.rsvp_code }}
     {{ form.attending.label }} {{ form.attending }}
     <div id="guests-field" style="visibility: hidden">
     {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
     </div>
-    {{ form.notes.label }} {{ form.notes }}
+    {{ form.note.label }} {{ form.note }}
     <p><input type="submit">
 </form>
 

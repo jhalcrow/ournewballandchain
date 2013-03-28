@@ -25,28 +25,24 @@ def edit_distance(s1, s2):
             scores[i, j] = min(score_up, score_left, score_swap)
     return scores[len(s1), len(s2)]
 
-def lookup_invite(name, code):
+def lookup_invite(name):
     '''
     Looks up an invite based on a name and an rsvp code. If code is provided
     we try to match based on that first, but if there's no match found that
     way we fall back on matching by name.
     '''
-    if code:
-        invite = Invite.query.filter_by(rsvp_code=code).first()
-        if invite:
-            return invite
-        else:
-            current_app.logger.warning('%s used code %s, but it is invalid' % (name, code))
+
+    name_matches = Invite.query.filter(Invite.name.ilike('%' + name + '%')).all()
+    if name_matches and len(name_matches) == 1:
+        return name_matches[1]
     else:
-        name_matches = Invite.query.filter(Invite.name.ilike('%' + name + '%')).all()
-        if name_matches and len(name_matches) == 1:
-            return name_matches[1]
-        else:
-            current_app.logger.warning('Unable to find match for %s' % name)
+        current_app.logger.warning('Unable to find match for %s' % name)
 
 def send_thanks(email):
     pass
 
+def notify_us(rsvp, thanks):
+    pass
 
 def rsvp_notify(rsvp, invite):
     '''
@@ -54,4 +50,5 @@ def rsvp_notify(rsvp, invite):
     '''
     if rsvp.email:
         send_thanks(rsvp.email)
+    notify_us(rsvp, invite)
  
