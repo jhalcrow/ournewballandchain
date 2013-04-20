@@ -42,8 +42,7 @@ def rsvp_prefill(code):
     invite = Invite.query.filter_by(rsvp_code=code).first()
 
     if not invite:
-        app.logger.info("Unable to find invite for code %s", code)
-        flash("Sorry, unable to locate your RSVP. Please try this form instead.")
+        app.logger.warning("Unable to find invite for code %s", code)
         return redirect(url_for('.rsvp_form'))
     if form.validate_on_submit():
         rsvp = RSVP(
