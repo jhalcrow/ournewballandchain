@@ -21,9 +21,14 @@
     {{ form.csrf_token}}
     {{ form.name.label }} {{ form.name }}
     {{ form.email.label }} {{ form.email }}
-    {{ form.attending.label }} {{ form.attending }}
-    <div id="guests-field" style="visibility: hidden">
-    {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
+    <div>
+        <div style="display: inline">
+        {{ form.attending.label }} {{ form.attending }}
+        </div>
+        <div id="guests-field" style="display: inline; visibility: hidden">
+        {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
+        {{ form.guest_names.label }} {{ form.guest_names }}
+        </div>
     </div>
     {{ form.note.label }} {{ form.note }}
     <p><input type="submit">

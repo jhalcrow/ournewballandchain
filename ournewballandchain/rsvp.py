@@ -20,9 +20,11 @@ def rsvp_form():
                 name=form.name.data,
                 email=form.email.data,
                 guests=form.guests.data,
+                guest_names=form.guest_names.data,
                 attending=form.attending.data,
                 timestamp=datetime.datetime.utcnow(),
                 note=form.note.data,
+                code_used=False,
                 qr_used=False
         )
         db.session.add(rsvp)
@@ -48,10 +50,12 @@ def rsvp_prefill(code):
         rsvp = RSVP(
             email=form.email.data,
             guests=form.guests.data,
+            guest_names=form.guest_names.data,
             attending=form.attending.data,
             timestamp=datetime.datetime.utcnow(),
             invite_id=invite.id,
             note=form.note.data,
+            code_used=True,
             qr_used=qr_used
         )
         db.session.add(rsvp)

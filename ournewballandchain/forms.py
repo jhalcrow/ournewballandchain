@@ -5,6 +5,7 @@ class RSVPForm(Form):
     email = EmailField("Email (if you want to get updates from us)")
     attending = BooleanField("Attending", validators=[Required()])
     guests = IntegerField("Number of Guests (including yourself)")
+    guest_names = TextField("Names of your guests")
     note = TextField("Anything you'd like to add")
 
     def validate_guests(form, field):

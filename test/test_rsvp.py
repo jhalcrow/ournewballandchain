@@ -28,8 +28,9 @@ class RSVPTestCase(unittest.TestCase):
         self.assertTrue('Joe Blo' in rv.data)
 
     def test_qr_nonexistant(self):
-        rv = self.test_client.get('/rsvp/BAD_CODE', follow_redirects=True)
-        self.assertTrue('Sorry, unable to locate your RSVP' in rv.data)
+        rv = self.test_client.get('/rsvp/BAD_CODE', follow_redirects=False)
+        self.assertEquals(rv.status_code, 302)
+        self.assertEquals(rv.location, 'http://localhost/rsvp')
 
     def test_qr_post(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
@@ -38,6 +39,7 @@ class RSVPTestCase(unittest.TestCase):
                     'email':'test@test.com',
                     'attending':'1',
                     'guests':'2',
+                    'guest_names': 'a, b',
                     'note':'TEST NOTE',
                 },
                 follow_redirects=True
@@ -55,10 +57,12 @@ class RSVPTestCase(unittest.TestCase):
             self.assertEquals(used_rsvp.email, 'test@test.com')
             self.assertEquals(used_rsvp.attending, True)
             self.assertEquals(used_rsvp.guests, 2)
+            self.assertEquals(used_rsvp.guest_names, 'a, b')
             self.assertEquals(used_rsvp.note, 'TEST NOTE')
             self.assertEquals(used_rsvp.invite_id, self.invite.id)
             self.assertEquals(used_invite.id, self.invite_id)
             self.assertEquals(used_rsvp.qr_used, False)
+            self.assertEquals(used_rsvp.code_used, True)
 
     def test_qr_post_with_code(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
@@ -67,6 +71,7 @@ class RSVPTestCase(unittest.TestCase):
                     'email':'test@test.com',
                     'attending':'1',
                     'guests':'2',
+                    'guest_names': 'a, b',
                     'note':'TEST NOTE',
                 },
                 follow_redirects=True
@@ -84,10 +89,12 @@ class RSVPTestCase(unittest.TestCase):
             self.assertEquals(used_rsvp.email, 'test@test.com')
             self.assertEquals(used_rsvp.attending, True)
             self.assertEquals(used_rsvp.guests, 2)
+            self.assertEquals(used_rsvp.guest_names, 'a, b')
             self.assertEquals(used_rsvp.note, 'TEST NOTE')
             self.assertEquals(used_rsvp.invite_id, self.invite.id)
             self.assertEquals(used_invite.id, self.invite_id)
             self.assertEquals(used_rsvp.qr_used, True)
+            self.assertEquals(used_rsvp.code_used, True)
 
     def test_regular_post(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
@@ -97,6 +104,7 @@ class RSVPTestCase(unittest.TestCase):
                     'email':'test@test.com',
                     'attending':'1',
                     'guests':'2',
+                    'guest_names': 'a, b',
                     'note':'TEST NOTE',
                 },
                 follow_redirects=True
@@ -115,9 +123,11 @@ class RSVPTestCase(unittest.TestCase):
             self.assertEquals(used_rsvp.email, 'test@test.com')
             self.assertEquals(used_rsvp.attending, True)
             self.assertEquals(used_rsvp.guests, 2)
+            self.assertEquals(used_rsvp.guest_names, 'a, b')
             self.assertEquals(used_rsvp.note, 'TEST NOTE')
             self.assertEquals(used_rsvp.invite_id, None)
             self.assertEquals(used_rsvp.qr_used, False)
+            self.assertEquals(used_rsvp.code_used, False)
             
 
 

@@ -26,6 +26,7 @@
     {{ form.attending.label }} {{ form.attending }}
     <div id="guests-field" style="visibility: hidden">
     {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
+    {{ form.guest_names.label }} {{ form.guest_names }}
     </div>
     {{ form.note.label }} {{ form.note }}
     <p><input type="submit">
