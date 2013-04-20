@@ -6,7 +6,7 @@ from .models import RSVP, Invite, db
 from .utils import rsvp_notify
 
 
-rsvp = Blueprint('rsvp', __name__, template_folder='templates')
+rsvp = Blueprint('rsvp', __name__, template_folder='templates', static_folder='static')
 
 @rsvp.route('/rsvp', methods=['GET', 'POST'])
 def rsvp_form():
@@ -32,7 +32,7 @@ def rsvp_form():
         rsvp_notify(rsvp, None)
         return redirect('/static/rsvp_success.html')
 
-    return render_template('rsvp_form.html', form=form)
+    return render_template('rsvp_form.html', form=form, header_file=url_for('.static', filename='img/rsvp_banner.png'))
 
 @rsvp.route('/rsvp/<code>', methods=['GET', 'POST'])
 def rsvp_prefill(code):
