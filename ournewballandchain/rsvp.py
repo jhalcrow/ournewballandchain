@@ -36,8 +36,11 @@ def rsvp_form():
 
 @rsvp.route('/rsvp/<code>', methods=['GET', 'POST'])
 def rsvp_prefill(code):
+    qr_used = 'qr_used' in request.args
+
     form = RSVPForm()
     invite = Invite.query.filter_by(rsvp_code=code).first()
+
     if not invite:
         app.logger.info("Unable to find invite for code %s", code)
         flash("Sorry, unable to locate your RSVP. Please try this form instead.")
@@ -50,7 +53,7 @@ def rsvp_prefill(code):
             timestamp=datetime.datetime.utcnow(),
             invite_id=invite.id,
             note=form.note.data,
-            qr_used=True
+            qr_used=qr_used
         )
         db.session.add(rsvp)
         db.session.commit()
@@ -59,5 +62,5 @@ def rsvp_prefill(code):
         rsvp_notify(rsvp, invite)
         return redirect('/static/rsvp_success.html')
 
-    return render_template('rsvp_form_prefill.html', form=form, invite=invite)
+    return render_template('rsvp_form_prefill.html', form=form, invite=invite, header_file=url_for('.static', filename='img/rsvp_banner.png'))
    
