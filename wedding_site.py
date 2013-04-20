@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from ournewballandchain import create_app
+from ournewballandchain import create_app, DefaultConfig
 
-app = create_app()
-app.run()
+app = create_app(DefaultConfig())
+app.run(debug=True)
