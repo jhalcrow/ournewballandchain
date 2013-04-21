@@ -48,6 +48,7 @@ def rsvp_prefill(code):
         return redirect(url_for('.rsvp_form'))
     if form.validate_on_submit():
         rsvp = RSVP(
+            name=invite.name,
             email=form.email.data,
             guests=form.guests.data,
             guest_names=form.guest_names.data,
