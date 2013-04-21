@@ -1,4 +1,4 @@
-from flask.ext.wtf import Form, TextField, Required, BooleanField, IntegerField, ValidationError
+from flask.ext.wtf import Form, TextField, Required, BooleanField, IntegerField, TextAreaField, ValidationError
 from flask.ext.wtf.html5 import EmailField, IntegerRangeField
 
 class RSVPForm(Form):
@@ -6,7 +6,7 @@ class RSVPForm(Form):
     attending = BooleanField("Attending", validators=[Required()])
     guests = IntegerField("Number of Guests (including yourself)")
     guest_names = TextField("Names of your guests")
-    note = TextField("Anything you'd like to add")
+    note = TextAreaField("Anything you'd like to add")
 
     def validate_guests(form, field):
         if field.data >= 10:

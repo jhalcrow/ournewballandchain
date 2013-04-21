@@ -17,21 +17,45 @@
     </ul>
 {% endif %}
 
-<form method="POST">
+<form method="POST" class="form-horizontal">
     {{ form.csrf_token}}
-    {{ form.name.label }} {{ form.name }}
-    {{ form.email.label }} {{ form.email }}
-    <div>
-        <div style="display: inline">
-        {{ form.attending.label }} {{ form.attending }}
+    <div class="control-group">
+        {{ form.name.label(class_="control-label") }} 
+        <div class="controls">{{ form.name }}</div>
+    </div>
+
+    <div class="control-group">
+        {{ form.email.label(class_="control-label") }} 
+        <div class="controls">{{ form.email }}</div>
+    </div>
+
+    <div class="control-group">
+        {{ form.attending.label(class_="control-label") }} 
+        <div class="controls">{{ form.attending }}</div>
+    </div>
+
+    <div id="guests-field" style="display: none">
+        <div class="control-group">
+            {{ form.guests.label(class_="control-label") }} 
+            <div class="controls">{{ form.guests(min=0, max=10) }}</div>
         </div>
-        <div id="guests-field" style="display: inline; visibility: hidden">
-        {{ form.guests.label }} {{ form.guests(min=0, max=10) }}
-        {{ form.guest_names.label }} {{ form.guest_names }}
+
+        <div class="control-group">
+            {{ form.guest_names.label(class_="control-label") }} 
+            <div class="controls">{{ form.guest_names }}</div>
         </div>
     </div>
-    {{ form.note.label }} {{ form.note }}
-    <p><input type="submit">
+
+    <div class="control-group">
+        {{ form.note.label(class_="control-label") }} 
+        <div class="controls">{{ form.note }}</div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit">
+        </div>
+    </div>
 </form>
 
 
@@ -42,9 +66,9 @@
     $('#attending').change(function() {
 
         if(this.checked) {
-            $('#guests-field').css('visibility', 'visible')
+            $('#guests-field').css('display', 'block')
         } else {
-            $('#guests-field').css('visibility', 'hidden')
+            $('#guests-field').css('display', 'none')
         }
     });
 </script>
