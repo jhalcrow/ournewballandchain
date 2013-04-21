@@ -8,7 +8,7 @@ from .utils import rsvp_notify
 
 rsvp = Blueprint('rsvp', __name__, template_folder='templates', static_folder='static')
 
-@rsvp.route('/rsvp', methods=['GET', 'POST'])
+@rsvp.route('/', methods=['GET', 'POST'])
 def rsvp_form():
     form = RSVPFreeForm()
     if form.validate_on_submit():
@@ -32,11 +32,11 @@ def rsvp_form():
 
         app.logger.info('Regular RSVP by %s', rsvp.name)
         rsvp_notify(rsvp, app.config['MANDRILL_API_KEY'], app.config['NOTIFY_EMAILS'])
-        return redirect('/static/rsvp_success.html')
+        return redirect(url_for('.static', filename='rsvp_success.html'))
 
     return render_template('rsvp_form.html', form=form, header_file=url_for('.static', filename='img/rsvp_banner.png'))
 
-@rsvp.route('/rsvp/<code>', methods=['GET', 'POST'])
+@rsvp.route('/<code>', methods=['GET', 'POST'])
 def rsvp_prefill(code):
     qr_used = 'qr_used' in request.args
 
@@ -64,7 +64,7 @@ def rsvp_prefill(code):
 
         app.logger.info("QR RSVP by %s", invite.name)
         rsvp_notify(rsvp, app.config['MANDRILL_API_KEY'], app.config['NOTIFY_EMAILS'])
-        return redirect('/static/rsvp_success.html')
+        return redirect(url_for('.static', filename='rsvp_success.html'))
 
     return render_template('rsvp_form_prefill.html', form=form, invite=invite, header_file=url_for('.static', filename='img/rsvp_banner.png'))
    

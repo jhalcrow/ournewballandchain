@@ -25,7 +25,7 @@ class RSVPTestCase(unittest.TestCase):
         self.transaction.rollback()
 
     def test_simple(self):
-        rv = self.test_client.get('/rsvp')
+        rv = self.test_client.get('/rsvp/')
         self.assertEquals(rv.status_code, 200)
 
     def test_qr_get(self):
@@ -36,7 +36,7 @@ class RSVPTestCase(unittest.TestCase):
     def test_qr_nonexistant(self):
         rv = self.test_client.get('/rsvp/BAD_CODE', follow_redirects=False)
         self.assertEquals(rv.status_code, 302)
-        self.assertEquals(rv.location, 'http://localhost/rsvp')
+        self.assertEquals(rv.location, 'http://localhost/rsvp/')
 
     def test_qr_post(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
@@ -106,7 +106,7 @@ class RSVPTestCase(unittest.TestCase):
 
     def test_regular_post(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
-            rv = self.test_client.post('/rsvp', 
+            rv = self.test_client.post('/rsvp/', 
                 data={
                     'name': 'Test',
                     'email':'test@test.com',

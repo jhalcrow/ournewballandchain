@@ -10,6 +10,7 @@ class DefaultConfig(object):
     SECRET_KEY = os.urandom(24)
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
     MANDRILL_API_KEY = ''
+    RSVP_PREFIX = '/rsvp'
     NOTIFY_EMAILS = []
 
 class TestConfig(DefaultConfig):
@@ -28,6 +29,10 @@ def create_app(config=None):
     db.init_app(app)
     db.create_all(app=app)
     from ournewballandchain.rsvp import rsvp as rsvp_blueprint
-    app.register_blueprint(rsvp_blueprint)
+
+    rsvp_prefix = app.config['RSVP_PREFIX']
+    rsvp_blueprint.static_url_path='/static'
+    app.register_blueprint(rsvp_blueprint, url_prefix=rsvp_prefix)
+
 
     return app
