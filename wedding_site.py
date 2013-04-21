@@ -3,4 +3,4 @@
 from ournewballandchain import create_app, DefaultConfig
 
 app = create_app(DefaultConfig())
-app.run(debug=True)
+app.run(debug=True, host='0.0.0.0')

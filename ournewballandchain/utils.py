@@ -46,22 +46,50 @@ def lookup_invite(name):
 MANDRILL_URL = 'https://mandrillapp.com/api/1.0/'
 from_email = 'rsvps@ournewballandchain.com'
 
-def send_thanks(rsvp):
-    attending_body = '''
-    Thank you for filling out the RSVP form.
+def send_thanks(rsvp, api_key):
 
-    We can't wait to see you June 8th!
+    if rsvp.attending:
+        body = '''
+        Thank you for filling out the RSVP form.
 
-    --Kate & Jonathan
-    '''
+        We can't wait to see you June 8th!
 
-    not_attending_body = '''
-    Thank you for filling out the RSVP form.
+        --Kate & Jonathan
+        '''
+    else:
+        body = '''
+        Thank you for filling out the RSVP form.
 
-    We're sorry that you can't make it!
+        We're sorry that you can't make it!
 
-    --Kate & Jonathan
-    '''
+        --Kate & Jonathan
+        '''
+
+
+    mandrill_req = {
+        'key': api_key,
+        'message': {
+            'text': body,
+            'subject': 'Thank you for filling out our RSVP Form',
+            'headers': {
+                'Reply-To': 'jonathan.halcrow@gmail.com'
+            },
+            'from_email': 'rsvps@ournewballandchain.com',
+            'from_name': 'Jonathan & Kate',
+            'to': [{'email': rsvp.email, 'name': rsvp.name},],
+        },
+        'async': False
+    }
+
+    http_resp = requests.post(
+        'https://mandrillapp.com/api/1.0/messages/send.json',
+        headers={'Content-Type': 'application/json'},
+        data=json.dumps(mandrill_req)
+    )
+
+    resp_value = http_resp.json()
+    handle_mandrill_response(resp_value)
+
 
 def notify_us(rsvp, api_key, our_emails):
     '''
@@ -83,7 +111,6 @@ Manual Code Used: %(code_used)s
     mandrill_req = {
         'key': api_key,
         'message': {
-            'html': body,
             'text': body,
             'subject': subject,
             'from_email': 'rsvps@ournewballandchain.com',
@@ -121,11 +148,11 @@ def handle_mandrill_response(response):
                 logger.error("Error sending to %(email)s, status: %(status)s, _id: %(_id)s", resp)
 
 
-def rsvp_notify(rsvp, invite, api_key, our_emails):
+def rsvp_notify(rsvp, api_key, our_emails):
     '''
     Sends an email about someone RSVPing
     '''
     if rsvp.email:
-        send_thanks(rsvp)
+        send_thanks(rsvp, api_key)
     notify_us(rsvp, api_key, our_emails)
  
