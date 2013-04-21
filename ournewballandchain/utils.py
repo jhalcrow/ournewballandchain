@@ -121,11 +121,11 @@ def handle_mandrill_response(response):
                 logger.error("Error sending to %(email)s, status: %(status)s, _id: %(_id)s", resp)
 
 
-def rsvp_notify(rsvp, invite):
+def rsvp_notify(rsvp, invite, api_key, our_emails):
     '''
     Sends an email about someone RSVPing
     '''
     if rsvp.email:
         send_thanks(rsvp)
-    notify_us(rsvp, invite)
+    notify_us(rsvp, api_key, our_emails)
  

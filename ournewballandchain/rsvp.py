@@ -31,7 +31,7 @@ def rsvp_form():
         db.session.commit()
 
         app.logger.info('Regular RSVP by %s', rsvp.name)
-        rsvp_notify(rsvp, None)
+        rsvp_notify(rsvp, app.config['MANDRILL_API_KEY'], app.config['NOTIFY_EMAILS'])
         return redirect('/static/rsvp_success.html')
 
     return render_template('rsvp_form.html', form=form, header_file=url_for('.static', filename='img/rsvp_banner.png'))
@@ -63,7 +63,7 @@ def rsvp_prefill(code):
         db.session.commit()
 
         app.logger.info("QR RSVP by %s", invite.name)
-        rsvp_notify(rsvp, invite)
+        rsvp_notify(rsvp, app.config['MANDRILL_API_KEY'], app.config['NOTIFY_EMAILS'])
         return redirect('/static/rsvp_success.html')
 
     return render_template('rsvp_form_prefill.html', form=form, invite=invite, header_file=url_for('.static', filename='img/rsvp_banner.png'))

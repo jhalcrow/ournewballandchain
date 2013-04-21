@@ -9,6 +9,8 @@ class DefaultConfig(object):
     DEBUG = False
     SECRET_KEY = os.urandom(24)
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
+    MANDRILL_API_KEY = ''
+    NOTIFY_EMAILS = []
 
 class TestConfig(DefaultConfig):
     DEBUG = True
