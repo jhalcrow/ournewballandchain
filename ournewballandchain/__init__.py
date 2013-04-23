@@ -21,7 +21,7 @@ class TestConfig(DefaultConfig):
 
 class ProductionConfig(DefaultConfig):
     RSVP_PREFIX='/'
-    STATIC_URL_PATH='/'
+    STATIC_URL_PATH='/static'
 
 
 
@@ -42,8 +42,7 @@ def create_app(config=None):
         app.static_url_path = app.config['STATIC_URL_PATH']
     else:
         rsvp_blueprint.static_url_path='/static'
-    rsvp_blueprint.static_url_path='/'
-    app.static_url_path = '/'
+
     app.register_blueprint(rsvp_blueprint, url_prefix=rsvp_prefix)
 
 
