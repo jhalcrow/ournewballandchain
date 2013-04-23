@@ -62,13 +62,17 @@
 
 {% block extra_script %}
 <script>
-    $('#attending').change(function() {
-
+    function show_hide_guests() {
         if(this.checked) {
-            $('#guests-field').css('visibility', 'visible')
+            $('#guests-field').css('display', 'block')
         } else {
-            $('#guests-field').css('visibility', 'hidden')
+            $('#guests-field').css('display', 'none')
         }
+    }
+    $('#attending').change(show_hide_guests);
+
+    $(document).ready(function() {
+        $('#attending').map(show_hide_guests);
     });
 </script>
 {% endblock %}
