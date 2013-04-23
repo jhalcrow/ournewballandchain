@@ -12,6 +12,7 @@ class DefaultConfig(object):
     MANDRILL_API_KEY = ''
     RSVP_PREFIX = '/rsvp'
     NOTIFY_EMAILS = []
+    STATIC_URL_PATH = '/static'
 
 class TestConfig(DefaultConfig):
     DEBUG = True
@@ -19,7 +20,8 @@ class TestConfig(DefaultConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 class ProductionConfig(DefaultConfig):
-    RSVP_PREFIX=None
+    RSVP_PREFIX='/'
+    STATIC_URL_PATH='/'
 
 
 
