@@ -57,11 +57,7 @@ def setup_logging():
 
     sh = logging.StreamHandler()
     sh.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    sh.setFormatter(formatter)
     current_app.logger.addHandler(sh)
-
-    fh = logging.FileHandler('/var/log/rsvp.log')
-    fh.setLevel(logging.DEBUG)
-    current_app.logger.addHandler(fh)
-
-    current_app.logger.info("Working?")
 
