@@ -3,6 +3,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class RSVP(db.Model):
+    __tablename__ = 'rsvp'
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     email = db.Column(db.String(254))
