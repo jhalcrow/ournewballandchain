@@ -20,7 +20,7 @@ class TestConfig(DefaultConfig):
 
 class ProductionConfig(DefaultConfig):
     RSVP_PREFIX=None
-    
+
 
 
 def create_app(config=None):
@@ -35,7 +35,10 @@ def create_app(config=None):
     from ournewballandchain.rsvp import rsvp as rsvp_blueprint
 
     rsvp_prefix = app.config['RSVP_PREFIX']
-    rsvp_blueprint.static_url_path='/static'
+    if 'STATIC_URL_PATH' in app.config:
+        rsvp_blueprint.static_url_path = app.config['STATIC_URL_PATH']
+    else:
+        rsvp_blueprint.static_url_path='/static'
     app.register_blueprint(rsvp_blueprint, url_prefix=rsvp_prefix)
 
 
