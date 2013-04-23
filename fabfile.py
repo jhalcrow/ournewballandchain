@@ -16,4 +16,7 @@ def deploy():
     with cd("ournewballandchain"):
         run("git pull")
         sudo("cp -r ournewballandchain/static/* /var/www")
+        sudo("/srv/rsvp/bin/python setup.py install")
+        sudo("cp rsvp_wsgi.py /srv/rsvp")
+        sudo("supervisorctl restart gunicorn-rsvp")
 
