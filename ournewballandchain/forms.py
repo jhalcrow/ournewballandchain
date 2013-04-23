@@ -3,7 +3,7 @@ from flask.ext.wtf.html5 import EmailField, IntegerRangeField
 
 class RSVPForm(Form):
     email = EmailField("Email (if you want to get updates from us)")
-    attending = BooleanField("Attending", validators=[Required()])
+    attending = BooleanField("Attending")
     guests = IntegerField("Number of Guests (including yourself)")
     guest_names = TextField("Names of your guests")
     note = TextAreaField("Anything you'd like to add")
