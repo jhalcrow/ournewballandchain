@@ -43,8 +43,8 @@ class ReverseProxied(object):
             environ['wsgi.url_scheme'] = scheme
         return self.app(environ, start_response)
 
-from ournewballandchain import create_app, DefaultConfig
-application = create_app(DefaultConfig)
+from ournewballandchain import create_app, ProductionConfig
+application = create_app(ProductionConfig)
 from werkzeug.contrib.fixers import ProxyFix
 application.wsgi_app = ProxyFix(application.wsgi_app)
 application.wsgi_app = ReverseProxied(application.wsgi_app)
@@ -53,7 +53,7 @@ application.wsgi_app = ReverseProxied(application.wsgi_app)
 def setup_logging():
     application.logger.addHandler(logging.StreamHandler())
     application.logger.setLevel(logging.DEBUG)
-    fh = logging.FileHandler('/tmp/rsvp.log')
+    fh = logging.FileHandler('/var/log/rsvp.log')
     fh.setLevel(logging.DEBUG)
     application.logger.addHandler(fh)
 
