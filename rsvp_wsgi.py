@@ -49,16 +49,19 @@ from werkzeug.contrib.fixers import ProxyFix
 application.wsgi_app = ProxyFix(application.wsgi_app)
 application.wsgi_app = ReverseProxied(application.wsgi_app)
 
+from flask import current_app
 @application.before_first_request
 def setup_logging():
     
-    app.logger.setLevel(logging.DEBUG)
-    
+    current_app.logger.setLevel(logging.DEBUG)
+
     sh = logging.StreamHandler()
     sh.setLevel(logging.DEBUG)
-    application.logger.addHandler(sh)
+    current_app.logger.addHandler(sh)
 
     fh = logging.FileHandler('/var/log/rsvp.log')
     fh.setLevel(logging.DEBUG)
-    application.logger.addHandler(fh)
+    current_app.logger.addHandler(fh)
+
+    current_app.logger.info("Working?")
 
