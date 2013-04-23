@@ -27,7 +27,7 @@ class ProductionConfig(DefaultConfig):
 
 def create_app(config=None):
 
-    app = Flask(__name__)
+    app = Flask(__name__, static_path=config.STATIC_URL_PATH)
     app.config.from_object(config)
     if 'WEDDING_CONFIG' in os.environ:
         app.config.from_envvar('WEDDING_CONFIG')
@@ -42,6 +42,8 @@ def create_app(config=None):
         app.static_url_path = app.config['STATIC_URL_PATH']
     else:
         rsvp_blueprint.static_url_path='/static'
+    rsvp_blueprint.static_url_path='/'
+    app.static_url_path = '/'
     app.register_blueprint(rsvp_blueprint, url_prefix=rsvp_prefix)
 
 
