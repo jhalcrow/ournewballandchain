@@ -39,6 +39,7 @@ def create_app(config=None):
     rsvp_prefix = app.config['RSVP_PREFIX']
     if 'STATIC_URL_PATH' in app.config:
         rsvp_blueprint.static_url_path = app.config['STATIC_URL_PATH']
+        app.static_url_path = app.config['STATIC_URL_PATH']
     else:
         rsvp_blueprint.static_url_path='/static'
     app.register_blueprint(rsvp_blueprint, url_prefix=rsvp_prefix)
