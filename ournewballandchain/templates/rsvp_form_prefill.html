@@ -32,7 +32,7 @@
         <div class="controls">{{ form.attending }}</div>
     </div>
 
-    <div id="guests-field" style="display: none">
+    <div id="guests-field">
         <div class="control-group">
             {{ form.guests.label(class_="control-label") }} 
             <div class="controls">{{ form.guests(min=0, max=10) }}</div>
