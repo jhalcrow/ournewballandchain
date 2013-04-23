@@ -18,6 +18,10 @@ class TestConfig(DefaultConfig):
     CSRF_ENABLED = False
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
+class ProductionConfig(DefaultConfig):
+    RSVP_PREFIX=None
+    
+
 
 def create_app(config=None):
 

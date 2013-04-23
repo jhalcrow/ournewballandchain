@@ -43,8 +43,8 @@ class ReverseProxied(object):
             environ['wsgi.url_scheme'] = scheme
         return self.app(environ, start_response)
 
-from ournewballandchain import create_app, config
-application = create_app(config.ProductionConfig())
+from ournewballandchain import create_app, DefaultConfig
+application = create_app(DefaultConfig)
 from werkzeug.contrib.fixers import ProxyFix
 application.wsgi_app = ProxyFix(application.wsgi_app)
 application.wsgi_app = ReverseProxied(application.wsgi_app)
