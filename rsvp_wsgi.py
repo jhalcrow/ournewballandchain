@@ -51,8 +51,13 @@ application.wsgi_app = ReverseProxied(application.wsgi_app)
 
 @application.before_first_request
 def setup_logging():
-    application.logger.addHandler(logging.StreamHandler())
-    application.logger.setLevel(logging.DEBUG)
+    
+    app.logger.setLevel(logging.DEBUG)
+    
+    sh = logging.StreamHandler()
+    sh.setLevel(logging.DEBUG)
+    application.logger.addHandler(sh)
+
     fh = logging.FileHandler('/var/log/rsvp.log')
     fh.setLevel(logging.DEBUG)
     application.logger.addHandler(fh)
