@@ -23,4 +23,4 @@ def setup_logging():
 
 @application.before_request
 def log_requests():
-    app.logger.info("%s - %s", request.method, request.url) 
+    application.logger.info("%s - %s", request.method, request.url) 
