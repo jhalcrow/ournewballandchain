@@ -8,7 +8,7 @@ from .utils import rsvp_notify
 
 rsvp = Blueprint('rsvp', __name__, template_folder='templates', static_folder='static')
 
-@rsvp.route('/', methods=['GET', 'POST'])
+@rsvp.route('/rsvp/', methods=['GET', 'POST'])
 def rsvp_form():
     form = RSVPFreeForm()
     if form.validate_on_submit():
@@ -36,7 +36,7 @@ def rsvp_form():
 
     return render_template('rsvp_form.html', form=form, header_file=url_for('.static', filename='img/rsvp_banner.png'))
 
-@rsvp.route('/<code>', methods=['GET', 'POST'])
+@rsvp.route('/rsvp/<code>', methods=['GET', 'POST'])
 def rsvp_prefill(code):
     qr_used = 'qr_used' in request.args
 

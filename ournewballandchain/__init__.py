@@ -10,7 +10,7 @@ class DefaultConfig(object):
     SECRET_KEY = os.urandom(24)
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
     MANDRILL_API_KEY = ''
-    RSVP_PREFIX = '/rsvp'
+    RSVP_PREFIX = None
     NOTIFY_EMAILS = []
     STATIC_URL_PATH = '/static'
 

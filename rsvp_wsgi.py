@@ -46,8 +46,8 @@ class ReverseProxied(object):
 from ournewballandchain import create_app, ProductionConfig
 application = create_app(ProductionConfig)
 from werkzeug.contrib.fixers import ProxyFix
-application.wsgi_app = ProxyFix(application.wsgi_app)
-application.wsgi_app = ReverseProxied(application.wsgi_app)
+#application.wsgi_app = ProxyFix(application.wsgi_app)
+#application.wsgi_app = ReverseProxied(application.wsgi_app)
 
 from flask import current_app
 @application.before_first_request
