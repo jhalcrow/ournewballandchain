@@ -25,22 +25,17 @@ class RSVPTestCase(unittest.TestCase):
         self.transaction.rollback()
 
     def test_simple(self):
-        rv = self.test_client.get('/rsvp/')
+        rv = self.test_client.get('/rsvp/form')
         self.assertEquals(rv.status_code, 200)
 
     def test_qr_get(self):
-        rv = self.test_client.get('/rsvp/TEST')
+        rv = self.test_client.get('/rsvp/form?code=TEST')
         self.assertEquals(rv.status_code, 200)
         self.assertTrue('Joe Blo' in rv.data)
 
-    def test_qr_nonexistant(self):
-        rv = self.test_client.get('/rsvp/BAD_CODE', follow_redirects=False)
-        self.assertEquals(rv.status_code, 302)
-        self.assertEquals(rv.location, 'http://localhost/rsvp/')
-
     def test_qr_post(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
-            rv = self.test_client.post('/rsvp/TEST', 
+            rv = self.test_client.post('/rsvp/form?code=TEST', 
                 data={
                     'email':'test@test.com',
                     'attending':'1',
@@ -73,7 +68,7 @@ class RSVPTestCase(unittest.TestCase):
 
     def test_qr_post_with_code(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
-            rv = self.test_client.post('/rsvp/TEST?qr_used=1', 
+            rv = self.test_client.post('/rsvp/form?code=TEST&qr_used=1', 
                 data={
                     'email':'test@test.com',
                     'attending':'1',
@@ -106,7 +101,7 @@ class RSVPTestCase(unittest.TestCase):
 
     def test_regular_post(self):
         with patch('ournewballandchain.rsvp.rsvp_notify'):
-            rv = self.test_client.post('/rsvp/', 
+            rv = self.test_client.post('/rsvp/form', 
                 data={
                     'name': 'Test',
                     'email':'test@test.com',

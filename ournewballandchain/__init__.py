@@ -17,10 +17,11 @@ class DefaultConfig(object):
 class TestConfig(DefaultConfig):
     DEBUG = True
     CSRF_ENABLED = False
+    RSVP_PREFIX='/rsvp'
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 class ProductionConfig(DefaultConfig):
-    RSVP_PREFIX='/'
+    RSVP_PREFIX=None
     STATIC_URL_PATH='/static'
 
 
